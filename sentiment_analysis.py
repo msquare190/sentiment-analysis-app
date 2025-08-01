@@ -200,19 +200,19 @@ vader_text_stopwords_accuracy_score = accuracy_score(
 
 # vader_text_stopwords_accuracy_score*100
 
- print(classification_report(test_dataset['labels'], test_dataset['vader_on_text_without_stopwords']))
+print(classification_report(test_dataset['labels'], test_dataset['vader_on_text_without_stopwords']))
 
 bow_score = accuracy_score(test_dataset['labels'], test_dataset['bow'])
 
 # bow_score*100
 
- print(classification_report(test_dataset['labels'], test_dataset['bow']))
+print(classification_report(test_dataset['labels'], test_dataset['bow']))
 
 tfidf_score = accuracy_score(test_dataset['labels'], test_dataset['tfidf'])
 
 # tfidf_score*100
 
- print(classification_report(test_dataset['labels'], test_dataset['tfidf']))
+print(classification_report(test_dataset['labels'], test_dataset['tfidf']))
 
 # """**CONCLUSION:** The best performing model/pipeline is the text to stopwords remover to bow to multinomialNB"""
 
