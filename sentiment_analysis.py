@@ -8,23 +8,6 @@ Original file is located at
 """
 
 
-
-"""**OBJECTIVES**
-
-PIPELINES WE WOULD CREATE
-
-1. "Text to Vader" Pipeline
-2. "Text to Stopwords remover to Vader" pipeline
-3. "Text to Stopwords remover to Bag of words to custom model"
-4. "Text to Stopwords remover to TF-IDF to custom model"
-
-**WORKFLOW**
-DATA COLLECTION
-TEXT PROCESSING
-MODEL CREATION
-MODEL EVALUATION AND SELECTION
-"""
-
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
@@ -48,10 +31,8 @@ from sklearn.naive_bayes import MultinomialNB
 stop_words = stopwords.words("english")
 
 train_dataset = pd.read_csv("sample_train.csv")
-train_dataset
 
 test_dataset = pd.read_csv("sample_test.csv")
-test_dataset
 
 
 
@@ -70,7 +51,7 @@ train_dataset['labels'] = train_dataset['labels'].map(mapping_values)
 
 test_dataset['labels'] = test_dataset['labels'].map(mapping_values)
 
-"""**TEXT PROCESSING**"""
+# """**TEXT PROCESSING**"""
 
 # remove stopwords
 # bag of words
@@ -78,7 +59,6 @@ test_dataset['labels'] = test_dataset['labels'].map(mapping_values)
 
 text = "this is an example with some stopwords, i love this product, it is good"
 
-text
 
 # tokenize the split: split into list of words
 words = nltk.word_tokenize(text)
@@ -87,7 +67,6 @@ words = nltk.word_tokenize(text)
 words = nltk.word_tokenize(text)
 filtered_words = [word for word in words if word not in stop_words]
 
-filtered_words
 
 # VADER doesn't accept list, it accepts strings
 # we need to convert filtered_words back to a string
@@ -98,7 +77,6 @@ words = nltk.word_tokenize(text)
 filtered_words = [word for word in words if word not in stop_words]
 filtered_text = " ". join(filtered_words)
 
-filtered_text
 
 def remove_stopwords(text):
   """
@@ -143,7 +121,7 @@ train_tfidf = tfidf_vectorizer.fit_transform(train_dataset['stop words'])
 
 test_idf = tfidf_vectorizer.transform(test_dataset['stop words'])
 
-"""Modelling"""
+# """Modelling"""
 
 # vader on normal sentences
 # vader on sentences without stop words
@@ -156,20 +134,19 @@ analyzer = SentimentIntensityAnalyzer()
 example_text = " i hate the orange flavor, bad product"
 
 sentiment_scores = analyzer.polarity_scores(example_text)
-sentiment_scores
+
 
 # we only need the compound score to know if the product is negative or positive
 compound_score = sentiment_scores['compound']
 
-compound_score
 
 # create a function using vader and sentence to get sentiment score
 
-"""
-takes a sentence
-get the sentiments scores using analyzer
+ """
+# takes a sentence
+# get the sentiments scores using analyzer
 
-return positive if cmp score greater than 0, else return negative
+# return positive if cmp score greater than 0, else return negative
 """
 
 def analyze_sentence(sentence):
@@ -190,9 +167,9 @@ test_dataset['vader_on_text_without_stopwords'] = test_dataset['stop words'].app
 
 # training custom models on bag of words and tf-idf
 
-train_tfidf
+# train_tfidf
 
-train_bow
+# train_bow
 
 #creating classifier objects for tf-idf and bow model
 classifier_bow = MultinomialNB()
@@ -205,7 +182,6 @@ test_dataset['bow']= classifier_bow.predict(test_bow)
 
 test_dataset['tfidf'] = classifier_bow.predict(test_idf)
 
-test_dataset
 
 """MODEL EVALUATION: USING ACCURACY SCORES AND CLASSIFICATION REPORT"""
 
@@ -216,7 +192,7 @@ vader_text_accuracy_score = accuracy_score(test_dataset['labels'], test_dataset[
 
 vader_text_accuracy_score*100
 
-print(classification_report(test_dataset['labels'], test_dataset['vader_on_text']))
+# print(classification_report(test_dataset['labels'], test_dataset['vader_on_text']))
 
 vader_text_stopwords_accuracy_score = accuracy_score(
     test_dataset['labels'],
@@ -224,19 +200,19 @@ vader_text_stopwords_accuracy_score = accuracy_score(
 
 vader_text_stopwords_accuracy_score*100
 
-print(classification_report(test_dataset['labels'], test_dataset['vader_on_text_without_stopwords']))
+# print(classification_report(test_dataset['labels'], test_dataset['vader_on_text_without_stopwords']))
 
 bow_score = accuracy_score(test_dataset['labels'], test_dataset['bow'])
 
 bow_score*100
 
-print(classification_report(test_dataset['labels'], test_dataset['bow']))
+# print(classification_report(test_dataset['labels'], test_dataset['bow']))
 
 tfidf_score = accuracy_score(test_dataset['labels'], test_dataset['tfidf'])
 
 tfidf_score*100
 
-print(classification_report(test_dataset['labels'], test_dataset['tfidf']))
+# print(classification_report(test_dataset['labels'], test_dataset['tfidf']))
 
 """**CONCLUSION:** The best performing model/pipeline is the text to stopwords remover to bow to multinomialNB"""
 
