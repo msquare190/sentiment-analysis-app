@@ -183,38 +183,38 @@ test_dataset['bow']= classifier_bow.predict(test_bow)
 test_dataset['tfidf'] = classifier_bow.predict(test_idf)
 
 
-"""MODEL EVALUATION: USING ACCURACY SCORES AND CLASSIFICATION REPORT"""
+# """MODEL EVALUATION: USING ACCURACY SCORES AND CLASSIFICATION REPORT"""
 
 # what are we evaluating
 test_dataset.head(5)
 
 vader_text_accuracy_score = accuracy_score(test_dataset['labels'], test_dataset['vader_on_text'])
 
-vader_text_accuracy_score*100
+# vader_text_accuracy_score*100
 
-# print(classification_report(test_dataset['labels'], test_dataset['vader_on_text']))
+ print(classification_report(test_dataset['labels'], test_dataset['vader_on_text']))
 
 vader_text_stopwords_accuracy_score = accuracy_score(
     test_dataset['labels'],
     test_dataset['vader_on_text_without_stopwords'])
 
-vader_text_stopwords_accuracy_score*100
+# vader_text_stopwords_accuracy_score*100
 
-# print(classification_report(test_dataset['labels'], test_dataset['vader_on_text_without_stopwords']))
+ print(classification_report(test_dataset['labels'], test_dataset['vader_on_text_without_stopwords']))
 
 bow_score = accuracy_score(test_dataset['labels'], test_dataset['bow'])
 
-bow_score*100
+# bow_score*100
 
-# print(classification_report(test_dataset['labels'], test_dataset['bow']))
+ print(classification_report(test_dataset['labels'], test_dataset['bow']))
 
 tfidf_score = accuracy_score(test_dataset['labels'], test_dataset['tfidf'])
 
-tfidf_score*100
+# tfidf_score*100
 
-# print(classification_report(test_dataset['labels'], test_dataset['tfidf']))
+ print(classification_report(test_dataset['labels'], test_dataset['tfidf']))
 
-"""**CONCLUSION:** The best performing model/pipeline is the text to stopwords remover to bow to multinomialNB"""
+# """**CONCLUSION:** The best performing model/pipeline is the text to stopwords remover to bow to multinomialNB"""
 
 def inference(text):
 
