@@ -192,7 +192,7 @@ vader_text_accuracy_score = accuracy_score(test_dataset['labels'], test_dataset[
 
 # vader_text_accuracy_score*100
 
- print(classification_report(test_dataset['labels'], test_dataset['vader_on_text']))
+print(classification_report(test_dataset['labels'], test_dataset['vader_on_text']))
 
 vader_text_stopwords_accuracy_score = accuracy_score(
     test_dataset['labels'],
