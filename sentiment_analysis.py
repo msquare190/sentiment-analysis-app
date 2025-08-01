@@ -142,12 +142,12 @@ compound_score = sentiment_scores['compound']
 
 # create a function using vader and sentence to get sentiment score
 
- """
+# """
 # takes a sentence
 # get the sentiments scores using analyzer
 
 # return positive if cmp score greater than 0, else return negative
-"""
+# """
 
 def analyze_sentence(sentence):
   sentiment_scores = analyzer.polarity_scores(sentence)
