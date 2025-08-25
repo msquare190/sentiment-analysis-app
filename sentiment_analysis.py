@@ -241,23 +241,27 @@ import streamlit as st
 st.title("Sentiment Analysis App")
 st.write("This app predicts sentiment using VADER, BoW + Naive Bayes, and TF-IDF + Naive Bayes.")
 
-user_input = st.text_area("Enter a review or sentence:")
+# Search bar style input
+user_input = st.text_input("Enter a review or sentence:")
 
-if user_input:
-    cleaned_input = remove_stopwords(user_input)
+# Add a button
+if st.button("🔍 Search"):
+    if user_input:
+         cleaned_input = remove_stopwords(user_input)
 
-    # VADER Sentiment
-    vader_sentiment = analyze_sentence(user_input)
-    st.write(f"VADER Sentiment: **{vader_sentiment}**")
+        # VADER Sentiment
+        vader_sentiment = analyze_sentence(user_input)
+        st.write(f"VADER Sentiment: **{vader_sentiment}**")
 
-    # BoW + Naive Bayes
-    bow_input = vectorizer.transform([cleaned_input])
-    bow_pred = classifier_bow.predict(bow_input)[0]
-    st.write(f"BoW + Naive Bayes Prediction: **{bow_pred}**")
-
-    # TF-IDF + Naive Bayes
-    tfidf_input = tfidf_vectorizer.transform([cleaned_input])
-    tfidf_pred = classifier_tfidf.predict(tfidf_input)[0]
-    st.write(f"TF-IDF + Naive Bayes Prediction: **{tfidf_pred}**")
-
+        # BoW + Naive Bayes
+        bow_input = vectorizer.transform([cleaned_input])
+        bow_pred = classifier_bow.predict(bow_input)[0]
+        st.write(f"BoW + Naive Bayes Prediction: **{bow_pred}**")
+    
+        # TF-IDF + Naive Bayes
+        tfidf_input = tfidf_vectorizer.transform([cleaned_input])
+        tfidf_pred = classifier_tfidf.predict(tfidf_input)[0]
+        st.write(f"TF-IDF + Naive Bayes Prediction: **{tfidf_pred}**")
+    
+       
 
