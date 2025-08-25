@@ -245,9 +245,9 @@ st.write("This app predicts sentiment using VADER, BoW + Naive Bayes, and TF-IDF
 user_input = st.text_input("Enter a review or sentence:")
 
 # Add a button
-if st.button("🔍 Search"):
+if st.button("Search"):
     if user_input:
-         cleaned_input = remove_stopwords(user_input)
+        cleaned_input = remove_stopwords(user_input)
 
         # VADER Sentiment
         vader_sentiment = analyze_sentence(user_input)
