@@ -262,6 +262,7 @@ if st.button("Search"):
         tfidf_input = tfidf_vectorizer.transform([cleaned_input])
         tfidf_pred = classifier_tfidf.predict(tfidf_input)[0]
         st.write(f"TF-IDF + Naive Bayes Prediction: **{tfidf_pred}**")
+
     
        
 
