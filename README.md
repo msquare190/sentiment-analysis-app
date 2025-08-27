@@ -10,6 +10,8 @@ Bag of Words + Naive Bayes Classifier
 
 TF-IDF + Naive Bayes Classifier
 
-Users can input any text review, and the app will display predicted sentiment (positive or negative) using all three models. The models were trained on a labeled dataset of e-commerce reviews and evaluate text after stopword removal for improved accuracy.
+Users can input any text review, and the app will display predicted sentiment (positive or negative) using all three models. 
+
+The models were trained on a labeled dataset of e-commerce reviews (a subset of the full dataset was used to reduce size and improve training efficiency). Reviews were preprocessed with stopword removal for better accuracy.
 
 This project showcases NLP preprocessing, feature extraction, and sentiment classification — all wrapped in an interactive and user-friendly web interface.
